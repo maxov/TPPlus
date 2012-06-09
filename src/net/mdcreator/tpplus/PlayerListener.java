@@ -3,6 +3,7 @@ package net.mdcreator.tpplus;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,7 +24,16 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         if(!player.hasPlayedBefore()){
-            Location loc = player.getLocation();
+            FileConfiguration config = plugin.configYML;
+            Location loc = new Location(
+                    plugin.getServer().getWorld(config.getString("spawn.world")),
+                    config.getDouble("spawn.y"),
+                    config.getDouble("spawn.x"),
+                    config.getDouble("spawn.z"),
+                    (float) config.getDouble("spawn.pitch"),
+                    (float) config.getDouble("spawn.yaw")
+            );
+            player.teleport(loc);
             loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
             loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
             loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 90);

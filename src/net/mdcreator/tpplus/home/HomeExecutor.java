@@ -35,6 +35,7 @@ public class HomeExecutor implements CommandExecutor{
                 send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                 send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                 send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
+                home.pos.getWorld().loadChunk(home.pos.getWorld().getChunkAt(loc));
                 send.teleport(home.pos);
                 loc = send.getLocation();
                 send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
@@ -123,9 +124,11 @@ public class HomeExecutor implements CommandExecutor{
                     send.sendMessage(title + ChatColor.RED + "That player's home is " + ChatColor.DARK_RED + "closed" + ChatColor.RED + "!");
                 } else{
                     Location loc = send.getLocation();
+                    Home home = plugin.homesManager.homes.get(name);
                     send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                     send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                     send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
+                    home.pos.getWorld().loadChunk(home.pos.getWorld().getChunkAt(loc));
                     send.teleport(plugin.homesManager.homes.get(name).pos);
                     send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                     send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
