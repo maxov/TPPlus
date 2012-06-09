@@ -1,1 +1,1 @@
-A quick custom plugin for teleportation.
+A quick custom plugin for interactive teleportation
