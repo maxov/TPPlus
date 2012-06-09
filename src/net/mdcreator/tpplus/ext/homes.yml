@@ -1,0 +1,18 @@
+# Homes storage file (edit only if you NEED to)
+# Typical home:
+# notch:
+#    x: 0
+#    y: 0
+#    z: 0
+#    pitch: 0
+#    yaw: 0
+#    world: world
+#    open: false
+notch:
+    x: 0
+    y: 0
+    z: 0
+    pitch: 0
+    yaw: 0
+    world: world
+    open: false

@@ -1,0 +1,35 @@
+name: TPPlus
+author: MDCreator
+version: 0.9
+
+main: net.mdcreator.tpplus.TPPlus
+
+commands:
+    home:
+        description: The base home command
+        usage: |
+            §8[§9TP+§8]§7 /home usage
+            §21:§7 /home help §8show this menu
+            §22:§7 /home §8go home
+            §23:§7 /home set §8set your home
+            §24:§7 /home set bed §8set your home to your bed
+            §25:§7 /home open §8open your home to others
+            §26:§7 /home close §8close your home
+            §5Tip: §7You can use the first letters of someone's name as their name §8(e.g. 'not' for 'notch')
+            §5Tip: §7If you are op, you can go to anyone's closed home
+            §27:§7 /home [player] §8go to [player]'s open home
+    tele:
+        description: The base TP command
+        usage: |
+            §8[§9TP+§8]§7 /tele usage
+            §21:§7 /tele help §8show this menu
+            §5Tip: §7You can use the first letters of someone's name as their name §8(e.g. 'not' for 'notch')
+            §5Tip: §7If you are op, the other person does not need to accept you
+            §22:§7 /tele [player] §8request tp to [player]
+            §23:§7 /tele accept [player] §8accept tp from [player]
+    spawn:
+        description: The base spawn command
+        usage: |
+            §8[§9TP+§8]§7 /spawn usage
+            §21:§7 /spawn §8go to spawn
+            §22:§7 /spawn set §8set a new spawn(only if OP)
