@@ -11,6 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.dynmap.DynmapAPI;
 
 import java.io.*;
 import java.util.Set;
@@ -29,6 +30,7 @@ public class TPPlus extends JavaPlugin{
     public CommandExecutor homeExecutor;
     public CommandExecutor spawnExecutor;
     public CommandExecutor tpExecutor;
+    public TPPlusExecutor tpPlusExecutor;
     public PlayerListener playerListener;
 
     public void onEnable(){
@@ -42,6 +44,8 @@ public class TPPlus extends JavaPlugin{
         spawnManager = new SpawnManager(this);
         homeExecutor = new HomeExecutor(this);
         spawnExecutor = new SpawnExecutor(this);
+        tpPlusExecutor = new TPPlusExecutor(this);
+
         tpExecutor = new TPExecutor(this);
 
         playerListener = new PlayerListener(this);
@@ -49,6 +53,7 @@ public class TPPlus extends JavaPlugin{
         getCommand("home").setExecutor(homeExecutor);
         getCommand("spawn").setExecutor(spawnExecutor);
         getCommand("tele").setExecutor(tpExecutor);
+        getCommand("tpplus").setExecutor(tpPlusExecutor);
 
     }
 

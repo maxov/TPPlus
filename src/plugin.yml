@@ -1,6 +1,6 @@
 name: TPPlus
 author: MDCreator
-version: 0.94
+version: 0.95
 description: A simple custom TP, spawn, and home plugin.
 
 main: net.mdcreator.tpplus.TPPlus
@@ -34,3 +34,9 @@ commands:
             §8[§9TP+§8]§7 /spawn usage
             §21:§7 /spawn §8go to spawn
             §22:§7 /spawn set §8set a new spawn(only if OP)
+    tpplus:
+        description: The base plugin command
+        usage: |
+                    §8[§9TP+§8]§7 /tpplus usage
+                    §21:§7 /tpplus §8display info
+                    §22:§7 /tpplus update §8automatically update the plugin
