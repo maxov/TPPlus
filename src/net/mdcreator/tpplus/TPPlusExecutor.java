@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 import java.io.FileOutputStream;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.Arrays;
 
 public class TPPlusExecutor implements CommandExecutor{
 
@@ -33,19 +35,22 @@ public class TPPlusExecutor implements CommandExecutor{
             return true;
         } else if(args.length==1){
             if(args[0].equals("update")){
+                if(sender instanceof Player && !sender.isOp()){
+                    sender.sendMessage(title + ChatColor.RED + "You can't update the plugin!");
+                    return true;
+                }
                 try {
-                    sender.sendMessage(title + "Fetching plugin online " + ChatColor.DARK_GRAY + "{------}");
+                    sender.sendMessage(title + "Updating plugin");
                     URL onlinePlugin = new URL("https://github.com/Gratimax/TPPlus/blob/master/deploy/TPPlus.jar?raw=true");
                     ReadableByteChannel rbc = Channels.newChannel(onlinePlugin.openStream());
-                    sender.sendMessage(title + "Fetching local copy " + ChatColor.DARK_GRAY + "{==----}");
                     FileOutputStream fos = new FileOutputStream(plugin.getDataFolder().getParentFile().getPath() + "\\TPPlus.jar");
-                    sender.sendMessage(title + "Copying repositories " + ChatColor.DARK_GRAY + "{====--}");
                     fos.getChannel().transferFrom(rbc, 0, 1 << 24);
-                    sender.sendMessage(title + "Finished, reloading server " + ChatColor.DARK_GRAY + "{======}");
-                    plugin.getLogger().info("Plugin update completed.");
-                    plugin.getServer().reload();
+                    sender.sendMessage(title + "Finished, reloading server");
+                    plugin.getLogger().info("Plugin update completed");
+                    plugin.onDisable();
                 } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    sender.sendMessage(title + ChatColor.RED + "An error occurred while updating:" + Arrays.toString(e.getStackTrace()));
+                    e.printStackTrace();
                 }
                 return true;
             } else return false;
