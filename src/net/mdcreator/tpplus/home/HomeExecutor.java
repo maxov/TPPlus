@@ -36,6 +36,7 @@ public class HomeExecutor implements CommandExecutor{
                 send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                 send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
                 home.pos.getWorld().loadChunk(home.pos.getWorld().getChunkAt(loc));
+                home.pos.getWorld().refreshChunk(home.pos.getWorld().getChunkAt(loc).getX(), home.pos.getWorld().getChunkAt(loc).getZ());
                 send.teleport(home.pos);
                 loc = send.getLocation();
                 send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
@@ -133,6 +134,7 @@ public class HomeExecutor implements CommandExecutor{
                     send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                     send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
                     home.pos.getWorld().loadChunk(home.pos.getWorld().getChunkAt(loc));
+                    home.pos.getWorld().refreshChunk(home.pos.getWorld().getChunkAt(loc).getX(), home.pos.getWorld().getChunkAt(loc).getZ());
                     send.teleport(plugin.homesManager.homes.get(name).pos);
                     send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                     send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
