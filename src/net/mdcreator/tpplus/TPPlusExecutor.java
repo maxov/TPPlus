@@ -47,7 +47,7 @@ public class TPPlusExecutor implements CommandExecutor{
                     fos.getChannel().transferFrom(rbc, 0, 1 << 24);
                     sender.sendMessage(title + "Finished, reloading server");
                     plugin.getLogger().info("Plugin update completed");
-                    plugin.onDisable();
+                    plugin.getServer().reload();
                 } catch (IOException e) {
                     sender.sendMessage(title + ChatColor.RED + "An error occurred while updating:" + Arrays.toString(e.getStackTrace()));
                     e.printStackTrace();
