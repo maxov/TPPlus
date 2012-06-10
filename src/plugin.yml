@@ -1,7 +1,7 @@
 name: TPPlus
 author: MDCreator
-version: 0.93
-description: A simple custom TP, spawn, and home plugin.
+version: 0.94
+description: A simple, custom TP, spawn, and home plugin.
 
 main: net.mdcreator.tpplus.TPPlus
 

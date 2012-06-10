@@ -41,7 +41,7 @@ public class TPExecutor implements CommandExecutor{
                 send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                 send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                 send.getWorld().playEffect(loc, Effect.STEP_SOUND, 35);
-                target.teleport(send);
+                send.teleport(target);
                 loc = target.getLocation();
                 send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                 send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
