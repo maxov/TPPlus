@@ -36,10 +36,11 @@ public class HomeExecutor implements CommandExecutor{
                 send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                 send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
                 loc = home.pos;
-                send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
-                send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
-                send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
+                loc.getWorld().loadChunk(loc.getWorld().getChunkAt(loc));
                 send.teleport(home.pos);
+                loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
+                loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
+                loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
                 send.sendMessage(title + "Home, sweet home.");
             } else{
                 sender.sendMessage(title + ChatColor.RED + "You need a home!");
@@ -132,10 +133,11 @@ public class HomeExecutor implements CommandExecutor{
                     send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                     send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
                     loc = home.pos;
-                    send.teleport(plugin.homesManager.homes.get(name).pos);
-                    send.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
-                    send.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
-                    send.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
+                    loc.getWorld().loadChunk(loc.getWorld().getChunkAt(loc));
+                    send.teleport(home.pos);
+                    loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
+                    loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
+                    loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
                     send.sendMessage(title + "Welcome.");
                 }
             }
