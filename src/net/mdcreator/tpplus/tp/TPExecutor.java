@@ -50,7 +50,10 @@ public class TPExecutor implements CommandExecutor{
                 target.sendMessage(title + send.getName() + " has tped to you.");
             } else{
                 tpManager.pairs.add(new TpPair(send, target));
-                target.sendMessage(title + send.getName() + " requests to tp to you.");
+                target.sendMessage(new String[] {
+                        title + send.getName() + " requests to tp to you.",
+                        title + "To accept them, use " + ChatColor.GRAY + "/tele accept " + send.getName().substring(0, 5) + ChatColor.GRAY + "."
+                });
                 send.sendMessage(title + "Request sent.");
                 send.getWorld().playEffect(send.getLocation().add(0, 1, 0), Effect.SMOKE, 1);
                 target.getWorld().playEffect(target.getLocation().add(0, 1, 0), Effect.SMOKE, 1);

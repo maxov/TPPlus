@@ -125,11 +125,14 @@ public class HomeExecutor implements CommandExecutor{
             // /home [player]
             {
                 Player target = plugin.getServer().getPlayer(args[0]);
-                String name;
+                String name = null;
                 if(target==null){
-                    if(plugin.homesManager.homes.containsKey(args[0])){
-                        name = args[0];
-                    } else{
+                    for(String player : plugin.homesManager.homes.keySet()){
+                        if(player.toLowerCase().startsWith(args[0].toLowerCase())){
+                            name = player;
+                        }
+                    }
+                    if(name==null){
                         send.sendMessage(title + ChatColor.RED + "That player does not exist!");
                         return true;
                     }
