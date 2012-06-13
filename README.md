@@ -1,1 +1,2 @@
-A quick custom plugin for interactive teleportation
+# TPPlus
+## ~ Simple and interactive teleportation, homes, and spawn
