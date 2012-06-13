@@ -11,6 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import java.util.Map;
+
 public class HomeExecutor implements CommandExecutor{
 
     private TPPlus plugin;
@@ -106,6 +108,17 @@ public class HomeExecutor implements CommandExecutor{
                     send.sendMessage(title + "Your home is now " + ChatColor.DARK_RED + "closed" + ChatColor.DARK_GRAY + " to guests.");
                 } else{
                     send.sendMessage(title + ChatColor.RED + "You need a home!");
+                }
+            } else
+
+            // /home list
+            if(args[0].equals("list")){
+                send.sendMessage(title + "Homes");
+                for(Map.Entry<String, Home> home: plugin.homesManager.homes.entrySet()){
+                    if (plugin.homesManager.openHomes.contains(home.getValue()))
+                        sender.sendMessage(ChatColor.DARK_GREEN + home.getKey());
+                    else
+                        sender.sendMessage(ChatColor.DARK_RED + home.getKey());
                 }
             } else
 
