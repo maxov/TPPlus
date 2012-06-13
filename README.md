@@ -1,2 +1,2 @@
 # TPPlus
-## ~ Simple and interactive teleportation, homes, and spawn
+### ~ Simple and interactive teleportation, homes, and spawn
