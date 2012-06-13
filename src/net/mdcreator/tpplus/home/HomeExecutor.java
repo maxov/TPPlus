@@ -136,8 +136,7 @@ public class HomeExecutor implements CommandExecutor{
                         send.sendMessage(title + ChatColor.RED + "That player does not exist!");
                         return true;
                     }
-                }
-                name = target.getName();
+                } else name = target.getName();
                 if(!plugin.homesManager.homes.containsKey(name)){
                     send.sendMessage(title + ChatColor.RED + "That player does not have a home!");
                 }else if(!plugin.homesManager.openHomes.contains(name)&&!send.isOp()&&!send.getName().equals(target.getName())){
