@@ -33,6 +33,7 @@ public class PlayerListener implements Listener {
                     (float) config.getDouble("spawn.pitch"),
                     (float) config.getDouble("spawn.yaw")
             );
+            loc.getWorld().loadChunk(loc.getWorld().getChunkAt(loc));
             player.teleport(loc);
             loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
             loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
