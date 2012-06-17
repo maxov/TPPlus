@@ -114,20 +114,13 @@ public class HomeExecutor implements CommandExecutor{
 
             // /home list
             if(args[0].equals("list")){
-                ArrayList<String> homes = new ArrayList<String>();
+                send.sendMessage(title + "Homes");
                 for(Map.Entry<String, Home> home: plugin.homesManager.homes.entrySet()){
                     if (plugin.homesManager.openHomes.contains(home.getKey()))
-                        homes.add(ChatColor.DARK_GREEN + home.getKey());
+                        send.sendMessage(ChatColor.DARK_GREEN + home.getKey());
                     else
-                        homes.add(ChatColor.DARK_RED + home.getKey());
+                    send.sendMessage(ChatColor.DARK_RED + home.getKey());
                 }
-                String fin = "";
-                for(String home : homes.subList(0, homes.size()-2)){
-                    fin+=fin + home + ChatColor.GRAY + ", ";
-                }
-                fin+=fin + homes.get(homes.size()-1);
-                send.sendMessage(title + "Homes");
-                send.sendMessage(fin);
             } else
 
             // /home [player]
