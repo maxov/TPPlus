@@ -114,13 +114,12 @@ public class HomeExecutor implements CommandExecutor{
 
             // /home list
             if(args[0].equals("list")){
-                send.sendMessage(title + "Homes");
+                String fin = "";
                 for(Map.Entry<String, Home> home: plugin.homesManager.homes.entrySet()){
-                    if (plugin.homesManager.openHomes.contains(home.getKey()))
-                        send.sendMessage(ChatColor.DARK_GREEN + home.getKey());
-                    else
-                    send.sendMessage(ChatColor.DARK_RED + home.getKey());
+                    fin+= plugin.homesManager.openHomes.contains(home.getKey()) ? ChatColor.DARK_GREEN : ChatColor.DARK_RED + home.getKey() + ChatColor.GRAY + " ";
                 }
+                send.sendMessage(title + "Homes");
+                send.sendMessage(fin);
             } else
 
             // /home [player]
