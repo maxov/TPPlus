@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class HomeExecutor implements CommandExecutor{
@@ -113,13 +114,20 @@ public class HomeExecutor implements CommandExecutor{
 
             // /home list
             if(args[0].equals("list")){
-                send.sendMessage(title + "Homes");
+                ArrayList<String> homes = new ArrayList<String>();
                 for(Map.Entry<String, Home> home: plugin.homesManager.homes.entrySet()){
                     if (plugin.homesManager.openHomes.contains(home.getKey()))
-                        sender.sendMessage(ChatColor.DARK_GREEN + home.getKey());
+                        homes.add(ChatColor.DARK_GREEN + home.getKey());
                     else
-                        sender.sendMessage(ChatColor.DARK_RED + home.getKey());
+                        homes.add(ChatColor.DARK_RED + home.getKey());
                 }
+                String fin = "";
+                for(String home : homes.subList(0, homes.size()-2)){
+                    fin+=fin + home + ChatColor.GRAY + ", ";
+                }
+                fin+=fin + homes.get(homes.size()-1);
+                send.sendMessage(title + "Homes");
+                send.sendMessage(fin);
             } else
 
             // /home [player]
