@@ -41,15 +41,17 @@ public class TPPlusExecutor implements CommandExecutor{
                 }
                 try {
                     sender.sendMessage(title + "Updating plugin");
+                    sender.getServer().broadcastMessage(title + "Updating plugin, expect lag");
                     URL onlinePlugin = new URL("https://github.com/Gratimax/TPPlus/blob/master/deploy/TPPlus.jar?raw=true");
                     sender.sendMessage(title + "Using https://github.com/Gratimax/TPPlus/blob/master/deploy/TPPlus.jar?raw=true");
                     plugin.getLogger().info(title + "Updating plugin https://github.com/Gratimax/TPPlus/blob/master/deploy/TPPlus.jar?raw=true");
                     ReadableByteChannel rbc = Channels.newChannel(onlinePlugin.openStream());
                     FileOutputStream fos = new FileOutputStream(plugin.getDataFolder().getParentFile().getPath() + "\\TPPlus.jar");
                     fos.getChannel().transferFrom(rbc, 0, 1 << 24);
-                    sender.sendMessage(title + "Finished, reloading server");
+                    sender.getServer().broadcastMessage(title + "Reloading server");
                     plugin.getLogger().info("Plugin update completed");
                     plugin.getServer().reload();
+                    sender.getServer().broadcastMessage(title + "Finished updating");
                 } catch (IOException e) {
                     sender.sendMessage(title + ChatColor.RED + "An error occurred while updating:" + Arrays.toString(e.getStackTrace()));
                     e.printStackTrace();
