@@ -34,10 +34,12 @@ public class PlayerListener implements Listener {
                     (float) config.getDouble("spawn.yaw")
             );
             loc.getWorld().loadChunk(loc.getWorld().getChunkAt(loc));
+            player.sendBlockChange(loc, loc.getBlock().getType(), loc.getBlock().getData());
             player.teleport(loc);
             loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
             loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
             loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 90);
+            plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Everyone welcome " + player.getName() + " to the server!");
         }
     }
 
