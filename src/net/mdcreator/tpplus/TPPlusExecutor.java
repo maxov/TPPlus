@@ -87,9 +87,11 @@ public class TPPlusExecutor implements CommandExecutor{
             if(args[0].equals("op-color")){
                 plugin.configYML.set("op-color", args[1]);
                 plugin.saveConfig();
+                sender.sendMessage(title + "Op color set to " + ChatColor.translateAlternateColorCodes('&', args[1] + "this"));
                 return true;
             } else if(args[0].equals("owner-color")){
                 plugin.configYML.set("owner-color", args[1]);
+                sender.sendMessage(title + "Owner color set to " + ChatColor.translateAlternateColorCodes('&', args[1] + "this"));
                 plugin.saveConfig();
                 return true;
             } else return false;
