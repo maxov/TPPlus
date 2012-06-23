@@ -24,10 +24,10 @@ public class SetHomeExecutor implements CommandExecutor{
         }
         send = (Player) sender;
         if(args.length==0){
-            send.performCommand("/home set");
+            send.performCommand("home set");
             return true;
         } else if(args.length==1&&args[0].equalsIgnoreCase("bed")){
-            send.performCommand("/home set bed");
+            send.performCommand("home set bed");
             return true;
         }
         return false;
