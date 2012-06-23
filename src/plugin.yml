@@ -1,6 +1,6 @@
 name: TPPlus
 author: MDCreator
-version: 1.2
+version: 1.21
 description: A simple, custom TP, spawn, and home plugin.
 
 main: net.mdcreator.tpplus.TPPlus
@@ -21,6 +21,9 @@ commands:
             §5Tip: §7You can use the first letters of someone's name as their name §8(e.g. 'not' for 'notch')
             §5Tip: §7If you are op, you can go to anyone's closed home
             §7/home [player] §8go to [player]'s open home
+    sethome:
+        description: wrapper for /home set
+        aliases: [sethoem]
     tele:
         description: The base TP command
         usage: |

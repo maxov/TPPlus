@@ -3,6 +3,7 @@ package net.mdcreator.tpplus;
 import net.mdcreator.tpplus.home.Home;
 import net.mdcreator.tpplus.home.HomeExecutor;
 import net.mdcreator.tpplus.home.HomesManager;
+import net.mdcreator.tpplus.home.SetHomeExecutor;
 import net.mdcreator.tpplus.spawn.SpawnExecutor;
 import net.mdcreator.tpplus.spawn.SpawnManager;
 import net.mdcreator.tpplus.tp.TPExecutor;
@@ -34,6 +35,7 @@ public class TPPlus extends JavaPlugin{
     public MarkerSet icons;
 
     public CommandExecutor homeExecutor;
+    public CommandExecutor setHomeExecutor;
     public CommandExecutor spawnExecutor;
     public CommandExecutor tpExecutor;
     public TPPlusExecutor tpPlusExecutor;
@@ -52,6 +54,7 @@ public class TPPlus extends JavaPlugin{
 
         spawnManager = new SpawnManager(this);
         homeExecutor = new HomeExecutor(this);
+        setHomeExecutor = new SetHomeExecutor(this);
         spawnExecutor = new SpawnExecutor(this);
         tpPlusExecutor = new TPPlusExecutor(this);
 
@@ -61,6 +64,7 @@ public class TPPlus extends JavaPlugin{
         playerListener = new PlayerListener(this);
 
         getCommand("home").setExecutor(homeExecutor);
+        getCommand("sethome").setExecutor(setHomeExecutor);
         getCommand("spawn").setExecutor(spawnExecutor);
         getCommand("tele").setExecutor(tpExecutor);
         getCommand("tpplus").setExecutor(tpPlusExecutor);
