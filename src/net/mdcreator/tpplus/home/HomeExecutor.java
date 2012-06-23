@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.dynmap.markers.Marker;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -73,7 +74,21 @@ public class HomeExecutor implements CommandExecutor{
                 config.set(name + ".world", loc.getWorld().getName());
                 if(newHome) config.set(name + ".open", false);
                 plugin.saveHomes();
-                plugin.icons.findMarker(send.getName()).setLocation(loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ());
+                Marker marker = plugin.icons.findMarker(send.getName());
+                if(marker==null){
+                    String plabel = "";
+                    plabel+= (send.getName().toLowerCase().endsWith("s") ? send.getName() + "'" : send.getName() + "'s");
+                    plabel+= " home";
+                    marker = plugin.icons.createMarker(send.getName(), plabel, true,
+                            loc.getWorld().getName(),
+                            loc.getX(),
+                            loc.getY(),
+                            loc.getZ(),
+                            plugin.dynmapAPI.getMarkerAPI().getMarkerIcon("house"),
+                            true
+                    );
+                }
+                marker.setLocation(loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ());
                 loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
                 loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                 loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 51);
@@ -90,7 +105,7 @@ public class HomeExecutor implements CommandExecutor{
                     Location home = plugin.homesManager.homes.get(send.getName()).pos;
                     String plabel = "";
                     plabel+= (send.getName().toLowerCase().endsWith("s") ? send.getName() + "'" : send.getName() + "'s");
-                    plabel+= " home <em>(open)</em>";
+                    plabel+= " home (open)";
                     plugin.icons.findMarker(send.getName()).setLabel(plabel);
                     home.getWorld().playEffect(home, Effect.ENDER_SIGNAL, 1);
                     home.getWorld().playEffect(home, Effect.MOBSPAWNER_FLAMES, 1);
@@ -113,6 +128,7 @@ public class HomeExecutor implements CommandExecutor{
                     plabel+= (send.getName().toLowerCase().endsWith("s") ? send.getName() + "'" : send.getName() + "'s");
                     plabel+= " home";
                     plugin.icons.findMarker(send.getName()).setLabel(plabel);
+                    plugin.icons.findMarker(send.getName()).setMarkerIcon(plugin.dynmapAPI.getMarkerAPI().getMarkerIcon("house"));
                     home.getWorld().playEffect(home, Effect.ENDER_SIGNAL, 1);
                     home.getWorld().playEffect(home, Effect.MOBSPAWNER_FLAMES, 1);
                     home.getWorld().playEffect(home, Effect.STEP_SOUND, 40);
