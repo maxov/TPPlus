@@ -1,6 +1,6 @@
 name: TPPlus
 author: MDCreator
-version: 0.99
+version: 1.0
 description: A simple, custom TP, spawn, and home plugin.
 
 main: net.mdcreator.tpplus.TPPlus
@@ -8,6 +8,7 @@ main: net.mdcreator.tpplus.TPPlus
 commands:
     home:
         description: The base home command
+        aliases: [hoem]
         usage: |
             §8[§9TP+§8]§7 /home usage
             §7/home help §8show this menu

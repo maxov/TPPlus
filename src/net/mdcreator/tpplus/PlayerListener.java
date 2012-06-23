@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -40,6 +41,7 @@ public class PlayerListener implements Listener {
             loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
             loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 90);
             plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Everyone welcome " + player.getName() + " to the server!");
+            event.setJoinMessage("");
         }
     }
 
