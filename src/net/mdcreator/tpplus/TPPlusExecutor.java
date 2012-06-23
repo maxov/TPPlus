@@ -63,10 +63,12 @@ public class TPPlusExecutor implements CommandExecutor{
                 try {
                     plugin.warpsFile.createNewFile();
                     plugin.copyFile("/ext/warps.yml", plugin.warpsFile);
+                    sender.sendMessage(title + "File update complete.");
                 } catch (IOException e) {
                     sender.sendMessage(title + ChatColor.RED + "An error occurred while adding yamls:" + Arrays.toString(e.getStackTrace()));
                     e.printStackTrace();
                 }
+                return true;
             } else return false;
         }
         return false;
