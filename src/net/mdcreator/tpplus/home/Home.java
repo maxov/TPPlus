@@ -1,4 +1,4 @@
-package net.mdcreator.tpplus;
+package net.mdcreator.tpplus.home;
 
 import org.bukkit.Location;
 

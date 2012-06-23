@@ -1,6 +1,5 @@
 package net.mdcreator.tpplus.home;
 
-import net.mdcreator.tpplus.Home;
 import net.mdcreator.tpplus.TPPlus;
 
 import java.util.HashMap;

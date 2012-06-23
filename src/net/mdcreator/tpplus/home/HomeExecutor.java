@@ -1,6 +1,5 @@
 package net.mdcreator.tpplus.home;
 
-import net.mdcreator.tpplus.Home;
 import net.mdcreator.tpplus.TPPlus;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -12,7 +11,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.dynmap.markers.Marker;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class HomeExecutor implements CommandExecutor{

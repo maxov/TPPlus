@@ -1,0 +1,16 @@
+# Warps storage file (edit only if you NEED to)
+# Typical warp:
+# warp_alpha:
+#    x: 0
+#    y: 0
+#    z: 0
+#    pitch: 0
+#    yaw: 0
+#    world: world
+warp_alpha:
+    x: 0
+    y: 0
+    z: 0
+    pitch: 0
+    yaw: 0
+    world: world

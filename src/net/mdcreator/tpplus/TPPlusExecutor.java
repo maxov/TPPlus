@@ -55,6 +55,18 @@ public class TPPlusExecutor implements CommandExecutor{
                     e.printStackTrace();
                 }
                 return true;
+            } else if(args[0].equals("yml_warps")){
+                if(sender instanceof Player && !sender.isOp()){
+                    sender.sendMessage(title + ChatColor.RED + "You can't update the serialized warps files!");
+                    return true;
+                }
+                try {
+                    plugin.warpsFile.createNewFile();
+                    plugin.copyFile("/ext/warps.yml", plugin.warpsFile);
+                } catch (IOException e) {
+                    sender.sendMessage(title + ChatColor.RED + "An error occurred while adding yamls:" + Arrays.toString(e.getStackTrace()));
+                    e.printStackTrace();
+                }
             } else return false;
         }
         return false;

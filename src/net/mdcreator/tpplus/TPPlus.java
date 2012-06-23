@@ -1,5 +1,6 @@
 package net.mdcreator.tpplus;
 
+import net.mdcreator.tpplus.home.Home;
 import net.mdcreator.tpplus.home.HomeExecutor;
 import net.mdcreator.tpplus.home.HomesManager;
 import net.mdcreator.tpplus.spawn.SpawnExecutor;
@@ -12,11 +13,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.dynmap.DynmapAPI;
-import org.dynmap.markers.MarkerIcon;
 import org.dynmap.markers.MarkerSet;
 
 import java.io.*;
-import java.util.HashSet;
 import java.util.Set;
 
 public class TPPlus extends JavaPlugin{
@@ -26,6 +25,8 @@ public class TPPlus extends JavaPlugin{
     public FileConfiguration configYML;
     public File homesFile;
     public FileConfiguration homesYML;
+    public File warpsFile;
+    public FileConfiguration warpsYML;
     public HomesManager homesManager;
     public SpawnManager spawnManager;
     public TpManager tpManager;
@@ -43,6 +44,7 @@ public class TPPlus extends JavaPlugin{
         dataFolder = getDataFolder();
         configFile = new File(dataFolder, "config.yml");
         homesFile = new File(dataFolder, "homes.yml");
+        warpsFile = new File(dataFolder, "warps.yml");
         homesManager = new HomesManager(this);
         tpManager = new TpManager();
 
@@ -74,8 +76,10 @@ public class TPPlus extends JavaPlugin{
             dataFolder.mkdir();
             homesFile.createNewFile();
             configFile.createNewFile();
+            warpsFile.createNewFile();
             copyFile("/ext/homes.yml", homesFile);
             copyFile("/ext/config.yml", configFile);
+            copyFile("/ext/warps.yml", warpsFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
