@@ -44,8 +44,7 @@ public class TPPlus extends JavaPlugin{
         homesFile = new File(dataFolder, "homes.yml");
         homesManager = new HomesManager(this);
         tpManager = new TpManager();
-        dynmapAPI = (DynmapAPI) getServer().getPluginManager().getPlugin("dynmap");
-        icons = dynmapAPI.getMarkerAPI().createMarkerSet("tpplus.homes", "Homes", null, true);
+
         reloadHomes();
 
         spawnManager = new SpawnManager(this);
@@ -63,6 +62,32 @@ public class TPPlus extends JavaPlugin{
         getCommand("tele").setExecutor(tpExecutor);
         getCommand("tpplus").setExecutor(tpPlusExecutor);
 
+        dynmapAPI = (DynmapAPI) getServer().getPluginManager().getPlugin("dynmap");
+        icons = dynmapAPI.getMarkerAPI().createMarkerSet("tpplus.homes", "Homes", null, true);
+        Set<String> homes = homesYML.getKeys(false);
+        for(String player: homes){
+            homesManager.homes.put(player, new Home(new Location(
+                    getServer().getWorld(homesYML.getString(player + ".world")),
+                    homesYML.getDouble(player + ".x"),
+                    homesYML.getDouble(player + ".y"),
+                    homesYML.getDouble(player + ".z"),
+                    (float) homesYML.getDouble(player + ".pitch"),
+                    (float) homesYML.getDouble(player + ".yaw")
+            )));
+            if(homesYML.getBoolean(player + ".open")) homesManager.openHomes.add(player);
+            String label = "";
+            label+= (player.toLowerCase().endsWith("s") ? player + "'" : player + "'s");
+            label+= " home";
+            if(homesYML.getBoolean(player + ".open")) label+=" <em>(open)</em>";
+            icons.createMarker(player, label, true,
+                    homesYML.getString(player + ".world"),
+                    homesYML.getDouble(player + ".x"),
+                    homesYML.getDouble(player + ".y"),
+                    homesYML.getDouble(player + ".z"),
+                    dynmapAPI.getMarkerAPI().getMarkerIcon("home"),
+                    true
+            );
+        }
     }
 
     public void onDisable(){
@@ -91,18 +116,7 @@ public class TPPlus extends JavaPlugin{
                     (float) homesYML.getDouble(player + ".yaw")
             )));
             if(homesYML.getBoolean(player + ".open")) homesManager.openHomes.add(player);
-            String label = "";
-            label+= (player.toLowerCase().endsWith("s") ? player + "'" : player + "'s");
-            label+= " home";
-            if(homesYML.getBoolean(player + ".open")) label+=" <em>(open)</em>";
-            icons.createMarker(player, label, true,
-                    homesYML.getString(player + ".world"),
-                    homesYML.getDouble(player + ".x"),
-                    homesYML.getDouble(player + ".y"),
-                    homesYML.getDouble(player + ".z"),
-                    dynmapAPI.getMarkerAPI().getMarkerIcon("home"),
-                    true
-                    );
+
         }
     }
 
