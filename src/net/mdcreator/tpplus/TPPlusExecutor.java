@@ -76,7 +76,7 @@ public class TPPlusExecutor implements CommandExecutor{
                 }
                 plugin.configYML.set("op-color", "&9");
                 plugin.configYML.set("owner-color", "&5");
-                plugin.reloadConfig();
+                plugin.saveConfig();
                 sender.sendMessage(title + "File update complete.");
             }else return false;
         } else if(args.length==2){
@@ -86,11 +86,11 @@ public class TPPlusExecutor implements CommandExecutor{
             }
             if(args[0].equals("op-color")){
                 plugin.configYML.set("op-color", args[1]);
-                plugin.reloadConfig();
+                plugin.saveConfig();
                 return true;
             } else if(args[0].equals("owner-color")){
                 plugin.configYML.set("owner-color", args[1]);
-                plugin.reloadConfig();
+                plugin.saveConfig();
                 return true;
             } else return false;
         }
