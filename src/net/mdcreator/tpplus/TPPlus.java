@@ -12,8 +12,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.dynmap.DynmapAPI;
+import org.dynmap.markers.MarkerIcon;
+import org.dynmap.markers.MarkerSet;
 
 import java.io.*;
+import java.util.HashSet;
 import java.util.Set;
 
 public class TPPlus extends JavaPlugin{
@@ -26,6 +29,8 @@ public class TPPlus extends JavaPlugin{
     public HomesManager homesManager;
     public SpawnManager spawnManager;
     public TpManager tpManager;
+    public DynmapAPI dynmapAPI;
+    public MarkerSet icons;
 
     public CommandExecutor homeExecutor;
     public CommandExecutor spawnExecutor;
@@ -39,12 +44,15 @@ public class TPPlus extends JavaPlugin{
         homesFile = new File(dataFolder, "homes.yml");
         homesManager = new HomesManager(this);
         tpManager = new TpManager();
+        dynmapAPI = (DynmapAPI) getServer().getPluginManager().getPlugin("dynmap");
+        icons = dynmapAPI.getMarkerAPI().createMarkerSet("tpplus.homes", "Homes", null, true);
         reloadHomes();
 
         spawnManager = new SpawnManager(this);
         homeExecutor = new HomeExecutor(this);
         spawnExecutor = new SpawnExecutor(this);
         tpPlusExecutor = new TPPlusExecutor(this);
+
 
         tpExecutor = new TPExecutor(this);
 
@@ -83,6 +91,18 @@ public class TPPlus extends JavaPlugin{
                     (float) homesYML.getDouble(player + ".yaw")
             )));
             if(homesYML.getBoolean(player + ".open")) homesManager.openHomes.add(player);
+            String label = "";
+            label+= (player.toLowerCase().endsWith("s") ? player + "'" : player + "'s");
+            label+= " home";
+            if(homesYML.getBoolean(player + ".open")) label+=" <em>(open)</em>";
+            icons.createMarker(player, label, true,
+                    homesYML.getString(player + ".world"),
+                    homesYML.getDouble(player + ".x"),
+                    homesYML.getDouble(player + ".y"),
+                    homesYML.getDouble(player + ".z"),
+                    dynmapAPI.getMarkerAPI().getMarkerIcon("home"),
+                    true
+                    );
         }
     }
 

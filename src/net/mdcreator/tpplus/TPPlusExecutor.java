@@ -50,7 +50,6 @@ public class TPPlusExecutor implements CommandExecutor{
                     sender.getServer().broadcastMessage(title + "Reloading server");
                     plugin.getServer().reload();
                     sender.getServer().broadcastMessage(title + "Finished updating");
-                    plugin.getLogger().info("Plugin update completed");
                 } catch (IOException e) {
                     sender.sendMessage(title + ChatColor.RED + "An error occurred while updating:" + Arrays.toString(e.getStackTrace()));
                     e.printStackTrace();
