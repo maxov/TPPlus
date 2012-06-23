@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
@@ -43,7 +44,7 @@ public class PlayerListener implements Listener {
                     loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
                     loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 90);
                 }
-            });
+            }, 2 * 10);
             plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Everyone welcome " + player.getName() + " to the server!");
             event.setJoinMessage("");
         }
@@ -54,6 +55,16 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         if(!plugin.homesManager.homes.containsKey(player.getName())){
             player.sendMessage(title + "To set your bed as home, say " + ChatColor.DARK_GRAY +"/home set bed" + ChatColor.GRAY + ".");
+        }
+    }
+
+    @EventHandler
+    public void onPlayerChat(PlayerChatEvent event){
+        Player player = event.getPlayer();
+        if(player.isOp()){
+            event.setFormat(ChatColor.RED + player.getName() + ChatColor.WHITE + "> " + ChatColor.GRAY + event.getMessage());
+        } else{
+            event.setFormat(ChatColor.WHITE + player.getName() + "> " + ChatColor.GRAY + event.getMessage());
         }
     }
 }
