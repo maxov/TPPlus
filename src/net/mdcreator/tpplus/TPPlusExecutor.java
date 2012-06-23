@@ -69,6 +69,29 @@ public class TPPlusExecutor implements CommandExecutor{
                     e.printStackTrace();
                 }
                 return true;
+            } else if(args[0].equals("yml_config_color")){
+                if(sender instanceof Player && !sender.isOp()){
+                    sender.sendMessage(title + ChatColor.RED + "You can't update the serialized warps files!");
+                    return true;
+                }
+                plugin.configYML.set("op-color", "&9");
+                plugin.configYML.set("owner-color", "&5");
+                plugin.reloadConfig();
+                sender.sendMessage(title + "File update complete.");
+            }else return false;
+        } else if(args.length==2){
+            if(sender instanceof Player && !sender.isOp()){
+                sender.sendMessage(title + ChatColor.RED + "You can't update the plugin!");
+                return true;
+            }
+            if(args[0].equals("op-color")){
+                plugin.configYML.set("op-color", args[1]);
+                plugin.reloadConfig();
+                return true;
+            } else if(args[0].equals("owner-color")){
+                plugin.configYML.set("owner-color", args[1]);
+                plugin.reloadConfig();
+                return true;
             } else return false;
         }
         return false;

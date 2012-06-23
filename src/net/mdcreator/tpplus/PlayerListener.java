@@ -61,8 +61,11 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerChat(PlayerChatEvent event){
         Player player = event.getPlayer();
+        if(player.getName().equalsIgnoreCase("saiildvaenr")){
+            event.setFormat(ChatColor.WHITE + "<" + ChatColor.translateAlternateColorCodes('&', plugin.configYML.getString("owner-color")) + player.getName() + ChatColor.WHITE + "> " + ChatColor.translateAlternateColorCodes('&', event.getMessage()));
+        }
         if(player.isOp()){
-            event.setFormat(ChatColor.WHITE + "<" + ChatColor.RED + player.getName() + ChatColor.WHITE + "> " + ChatColor.translateAlternateColorCodes('&', event.getMessage()));
+            event.setFormat(ChatColor.WHITE + "<" + ChatColor.translateAlternateColorCodes('&', plugin.configYML.getString("op-color")) + player.getName() + ChatColor.WHITE + "> " + ChatColor.translateAlternateColorCodes('&', event.getMessage()));
         } else{
             event.setFormat(ChatColor.WHITE + "<" + player.getName() + "> " + ChatColor.translateAlternateColorCodes('&', event.getMessage()));
         }
