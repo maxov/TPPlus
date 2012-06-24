@@ -55,30 +55,7 @@ public class TPPlusExecutor implements CommandExecutor{
                     e.printStackTrace();
                 }
                 return true;
-            } else if(args[0].equals("yml_warps")){
-                if(sender instanceof Player && !sender.isOp()){
-                    sender.sendMessage(title + ChatColor.RED + "You can't update the serialized warps files!");
-                    return true;
-                }
-                try {
-                    plugin.warpsFile.createNewFile();
-                    plugin.copyFile("/ext/warps.yml", plugin.warpsFile);
-                    sender.sendMessage(title + "File update complete.");
-                } catch (IOException e) {
-                    sender.sendMessage(title + ChatColor.RED + "An error occurred while adding yamls:" + Arrays.toString(e.getStackTrace()));
-                    e.printStackTrace();
-                }
-                return true;
-            } else if(args[0].equals("yml_config_color")){
-                if(sender instanceof Player && !sender.isOp()){
-                    sender.sendMessage(title + ChatColor.RED + "You can't update the serialized warps files!");
-                    return true;
-                }
-                plugin.configYML.set("op-color", "&9");
-                plugin.configYML.set("owner-color", "&5");
-                plugin.saveConfig();
-                sender.sendMessage(title + "File update complete.");
-            }else return false;
+            } else return false;
         } else if(args.length==2){
             if(sender instanceof Player && !sender.isOp()){
                 sender.sendMessage(title + ChatColor.RED + "You can't update the plugin!");
@@ -93,6 +70,17 @@ public class TPPlusExecutor implements CommandExecutor{
                 plugin.configYML.set("owner-color", args[1]);
                 sender.sendMessage(title + "Owner color set to " + ChatColor.translateAlternateColorCodes('&', args[1] + "this"));
                 plugin.saveConfig();
+                return true;
+            }  else if(args[0].equals("remove")){
+                String player = args[1];
+                for(String possible : plugin.homesManager.homes.keySet()){
+                    if(possible.toLowerCase().startsWith(player.toLowerCase())) player = possible;
+                }
+                plugin.icons.findMarker(player).deleteMarker();
+                plugin.homesManager.homes.remove(player);
+                plugin.homesYML.set(player, null);
+                plugin.saveHomes();
+                sender.sendMessage(title + "Home for " + player + " deleted.");
                 return true;
             } else return false;
         }
