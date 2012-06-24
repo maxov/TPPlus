@@ -72,9 +72,13 @@ public class TPPlusExecutor implements CommandExecutor{
                 plugin.saveConfig();
                 return true;
             }  else if(args[0].equals("remove")){
-                String player = args[1];
+                String player = null;
                 for(String possible : plugin.homesManager.homes.keySet()){
-                    if(possible.toLowerCase().startsWith(player.toLowerCase())) player = possible;
+                    if(possible.toLowerCase().startsWith(args[1].toLowerCase())) player = possible;
+                }
+                if(player==null){
+                    sender.sendMessage(title + ChatColor.RED + "That player is not in our records!");
+                    return true;
                 }
                 plugin.icons.findMarker(player).deleteMarker();
                 plugin.homesManager.homes.remove(player);
