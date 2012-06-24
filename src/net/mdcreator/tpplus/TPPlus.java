@@ -130,7 +130,7 @@ public class TPPlus extends JavaPlugin{
                     homesYML.getDouble(player + ".x"),
                     homesYML.getDouble(player + ".y"),
                     homesYML.getDouble(player + ".z"),
-                    dynmapAPI.getMarkerAPI().getMarkerIcon("default"),
+                    dynmapAPI.getMarkerAPI().getMarkerIcon("house"),
                     true
             );
         }

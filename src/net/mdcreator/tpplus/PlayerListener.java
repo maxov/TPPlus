@@ -49,6 +49,9 @@ public class PlayerListener implements Listener {
             plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Everyone welcome " + player.getName() + " to the server!");
             event.setJoinMessage("");
         }
+        if(player.isOp()){
+            player.setAllowFlight(true);
+        }
     }
 
     @EventHandler
