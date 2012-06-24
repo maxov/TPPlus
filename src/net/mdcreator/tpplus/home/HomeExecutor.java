@@ -126,7 +126,6 @@ public class HomeExecutor implements CommandExecutor{
                     plabel+= (send.getName().toLowerCase().endsWith("s") ? send.getName() + "'" : send.getName() + "'s");
                     plabel+= " home";
                     plugin.icons.findMarker(send.getName()).setLabel(plabel);
-                    plugin.icons.findMarker(send.getName()).setMarkerIcon(plugin.dynmapAPI.getMarkerAPI().getMarkerIcon("house"));
                     home.getWorld().playEffect(home, Effect.ENDER_SIGNAL, 1);
                     home.getWorld().playEffect(home, Effect.MOBSPAWNER_FLAMES, 1);
                     home.getWorld().playEffect(home, Effect.STEP_SOUND, 40);
