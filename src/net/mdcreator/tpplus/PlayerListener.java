@@ -37,15 +37,9 @@ public class PlayerListener implements Listener {
             );
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
-                    loc.getWorld().loadChunk(loc.getWorld().getChunkAt(loc));
-                    player.sendBlockChange(loc, loc.getBlock().getType(), loc.getBlock().getData());
                     player.teleport(loc);
-                    loc.getWorld().playEffect(loc, Effect.ENDER_SIGNAL, 1);
-                    loc.getWorld().playEffect(loc, Effect.MOBSPAWNER_FLAMES, 1);
-                    loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 90);
-                    player.setHealth(20);
                 }
-            }, ticks(2));
+            }, 2);
             plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Everyone welcome " + player.getName() + " to the server!");
             event.setJoinMessage("");
         }
@@ -69,9 +63,5 @@ public class PlayerListener implements Listener {
         } else{
             event.setFormat(ChatColor.WHITE + player.getName() + ": " + ChatColor.translateAlternateColorCodes('&', event.getMessage()));
         }
-    }
-
-    public int ticks(int seconds){
-        return seconds * 20;
     }
 }
