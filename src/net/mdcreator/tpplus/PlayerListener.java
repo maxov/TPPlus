@@ -37,7 +37,7 @@ public class PlayerListener implements Listener {
             );
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
-                    player.teleport(loc);
+                    player.performCommand("spawn");
                 }
             }, 2);
             plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Everyone welcome " + player.getName() + " to the server!");
